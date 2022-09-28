@@ -1,0 +1,8 @@
+{
+    "event_type": "msapersoncontactchange",
+    "payload" : {
+        "ahv": "295.38.355.234",
+        "phone_type": "mobile",
+        "phone": "079 686 475 27"
+    }
+}

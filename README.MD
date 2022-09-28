@@ -14,11 +14,20 @@ The POST /toDIM will only verify the format of the JSON data in the payload and 
 Install Python 3.9.14
 https://www.python.org/downloads/release/python-3914/
 
+## Create the Python Virtual Environment
+
+Do the following steps only once (unless there is a code update that requires it)
+Create the environment: `py -m venv .venv`
+Install the python library requirementy: `python -m pip install -r .\requirements.txt`
+
 ## Run the server
 
 Prerequisite: Pyston 3.9.14 installed
 1) Switch to the root directory of the project
-2) run the following command `uvicorn src.main.py --reload --port 8080`
+2) run the following command `uvicorn main:app --reload --port 8080`
 
+## The API Documentation and Tests
+
+You can view and test the OpenAPI documentation on http://127.0.0.1/8080/docs
 
 

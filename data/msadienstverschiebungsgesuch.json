@@ -1,0 +1,8 @@
+{
+    "event_type": "msadienstverschiebungsgesucheingereicht",
+    "payload" : {
+        "ahv": "295.38.355.234",
+        "service_requested_to_cancel": "S_8472",
+        "reason_for_request": "Recovery from Broken Leg"
+    }
+}
