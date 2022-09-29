@@ -1,12 +1,28 @@
 import json
 from typing import List, Union
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from fastapi.openapi.docs import (
+    get_redoc_html,
+    get_swagger_ui_html,
+)
 import os, random
 import globallogger
 
 logger = globallogger.setup_custom_logger('app')
 
-app = FastAPI()
+app = FastAPI(docs_url=None, redoc_url=None)
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+@app.get("/docs", include_in_schema=False)
+async def custom_swagger_ui_html():
+    return get_swagger_ui_html(
+        openapi_url=app.openapi_url,
+        title=app.title + " - Swagger UI",
+        swagger_js_url="/static/swagger-ui-bundle.js",
+        swagger_css_url="/static/swagger-ui.css",
+        swagger_favicon_url="/static/favicon.ico",
+    )
 
 @app.get("/")
 async def get_all_event_types():
