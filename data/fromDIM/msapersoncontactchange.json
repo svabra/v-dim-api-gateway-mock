@@ -1,8 +1,6 @@
 {
-    "event_type": "msapersoncontactchange",
-    "payload" : {
-        "ahv": "295.38.355.234",
-        "phone_type": "mobile",
-        "phone": "079 686 475 27"
-    }
+            "messageId": "af337009-71da-47f2-a894-2dd836e54f24",
+            "ahvNummer": "7569343530405",
+            "phone_type": "CELL",
+            "PHONE": "+41 79 686 475 27"
 }

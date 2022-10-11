@@ -16,9 +16,11 @@ RUN apk add py3-pip
 RUN apk update
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install --no-cache-dir --upgrade -r /requirements.txt
+RUN python3 -m pip install fastapi
+RUN python3 -m pip install hypercorn
 
 COPY ./ /
 
 WORKDIR /
 EXPOSE 8080
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["hypercorn", "main:app", "--bind", "0.0.0.0:8080"]

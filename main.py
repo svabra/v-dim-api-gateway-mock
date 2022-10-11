@@ -1,7 +1,7 @@
 import json
 import glob
 from typing import List, Union
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.openapi.docs import (
     get_redoc_html,
@@ -40,10 +40,20 @@ async def get_event(event_type:str):
     # Return random list of events by choosing a random file from the /data folder.
     return json_content
 
+async def print_request(request):
+        print(f'request header       : {dict(request.headers.items())}' )
+        print(f'request query params : {dict(request.query_params.items())}')  
+        try : 
+            print(f'request json         : {await request.json()}')
+        except Exception as err:
+            # could not parse json
+            print(f'request body         : {await request.body()}')
 
 @app.post("/toDIM")
-async def send_event(event: str):
-    """Use this service to post a event to the BIT."""
-    # TODO Return type must be learned from BIT engineers.
-    logger.info(f"Event for /toDIM received: {event}")
-    return {"your event": f"{event}"}
+async def create_file(request: Request):
+        try:
+            await print_request(request)
+            return {"status": "OK"}
+        except Exception as err:
+            logging.error(f'could not print REQUEST: {err}')
+            return {"status": "ERR"}
